@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./js/jquery.mobile-1.4.3.min.css">
+		<script src="./js/jquery-1.7.1.min.js"></script>
+		<script src="./js/jquery.mobile-1.4.3.min.js"></script>
+
+<!--		開啟推播功能 	-->
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" src='js/gcm.js'></script> 
+		<script type="text/javascript" src="js/PushNotification.js"></script>
+	
+		<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			
+			//var a=localStorage.getItem("name");
+
+			if(localStorage.getItem("name")=='demo')
+				localStorage.setItem("name","A0028338");
+//			alert(localStorage.getItem("name"));
+
+			$("#job").click(function(){
+
+				localStorage.setItem("web","welcome");
+				location.href="get_job.html";
+				event.preventDefault();			
+/*			
+>>>>>>> 0b9e0372edb5c7860b89354aefed320e7bdc8117
+				var request = $.ajax({
+					type: "post",	
+					url: "https://163.15.192.185/career/index.php/job/getJob/format/json",
+					dataType:"html",
+					cache: false,
+					success:onSuccess, 
+					error: onError,		
+					data: {
+						id:localStorage.getItem("name")
+<<<<<<< HEAD
+					}
+				});
+=======
+					}				
+				});
+*/					
+
+			});
+		});
+		
+
+		function onError(data, status)
+		{
+			alert("error:"+data);
+			console.log(data);
+		} 
+
+		function onSuccess(data, status)
+		{	
+			localStorage.setItem("web",null);
+			localStorage.setItem("web","welcome");
+			//alert(data);
+			localStorage.setItem("getdata",data);
+			location.href="get_job.html";
+			event.preventDefault();
+			//alert(localStorage.getItem("getdata"));
+			/*
+			alert('OK_1');
+			console.log(data);
+			//data = $.trim(data);
+            url_str="get_job.html";
+			location.herf=url_str;
+			
+			$("#notification").text(data);
+			*/
+		}
+		</script>
+	</head>
+	<body>
+		<div data-role="page" data-theme="c">
+		  <div data-role="header" data-theme="b" align="center">
+			<P>大專生即時就業媒合系統<P>
+			<div data-role="navbar">
+				<ul>
+				<li><a href="index.html" data-icon="arrow-l" data-rel="back">上一頁</a></li>
+				<li><a href="index.html" data-icon="home">首頁</a></li>
+				</ul>
+			</div>
+		  </div>
+
+		  <div data-role="content" data-theme="c">
+		     <div data-role="fieldcontain">
+				<H3 align="center">您好</H3>
+				<div data-demo-html="true">
+				<ul data-role="listview" data-inset="true">
+<!--					
+					<li><button id="job">就業方向</button></li>  
+-->
+					<li><a href="get_job.html" id="job">就業方向</a><li> 
+					<li><a href="my_track.html" rel="external">我的追蹤</a></li>
+					<li><a href="push.html" rel="external">檢視推播訊息</a></li>
+				</ul>
+				</div><!--/demo-html -->
+			</div>
+<!--	debug		<div id="result"></div> -->
+		  </div>
+
+		  <div data-role="footer" data-theme="b">
+		  <h1></h1>
+		  </div>
+		</div> 
+	</body>
+</html>

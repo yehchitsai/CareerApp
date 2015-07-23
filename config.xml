@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.khimd" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>career</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    
+    <platform name="android">
+		<feature name="career" >
+			<param name="android-package" value="com.khimd"/>
+		</feature>
+		<icon src="res/android/android.png" density="ldpi" />
+		<icon src="res/android/android.png" density="mdpi" />
+		<icon src="res/android/android.png" density="hdpi" />
+		<icon src="res/android/android.png" density="xhdpi" />
+    </platform>
+	<platform name="ios">
+		<feature name="career">
+			<param name="ios-package" value="com.khimd"/>
+		</feature>
+		<icon src="res/ios/iphone.png" />
+	</platform>
+    
+    
+    
+    
+    
+    <access origin="*" />
+</widget>
