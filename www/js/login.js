@@ -25,7 +25,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
         checkConnection();
     }
 $(document).ready(function(){
-	var WEBURL = "http://163.15.192.201/career/index.php/rest_auth/student/format/json";
+	var WEBURL = "http://163.15.192.201/careerCI/rest_auth/student/format/json";
 //	alert(WEBURL);
 //	checkConnection();
 //	alert("after connect");
