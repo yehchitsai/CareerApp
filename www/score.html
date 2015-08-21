@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./js/jquery.mobile-1.4.5.min.css">
+		<script src="./js/jquery-1.7.1.min.js"></script>
+		<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript"></script>
+
+<!--		開啟推播功能 	
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" src='js/gcm.js'></script> 
+		<script type="text/javascript" src="js/PushNotification.js"></script>
+-->
+		<script type="text/javascript" charset="utf-8"></script>
+	</head>
+	
+	<body>
+		<div data-role="page" data-theme="c">
+		  <div data-role="header" data-theme="b" align="center">
+			<P>有夢最美<P>
+			<div data-role="navbar">
+				<a class="ui-btn ui-btn-icon-left ui-btn-left ui-icon-carat-l">回上頁</a>
+				<a class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-home" href="welcome.html">首頁</a>
+			</div>
+		  </div>
+
+		  <div data-role="content" data-theme="c">
+<!--			<table>
+				<th>
+					<tr>分數條</tr>
+					<tr>課程(占30%)：</tr>
+					<tr>成績(占30%)：</tr>
+					<tr>證照(占40%)：</tr>
+				</th>
+			</table>
+-->			
+			<div class="ui-grid-a" align="center">
+				<div class="ui-block-a" style="width:100%"><h3>分數條</h3></div>
+				<div class="ui-block-a"><span>課程(占30%)：</span></div>
+				<div class="ui-block-b"><span>Some Text</span></div>
+				<div class="ui-block-a"><span>成績(占30%)：</span></div>
+				<div class="ui-block-b"><span>Some Text</span></div>
+				<div class="ui-block-a"><span>證照(占40%)：</span></div>
+				<div class="ui-block-b"><span>Some Text</span></div>
+				<div class="ui-block-a"><h2>總分：</h2></div>
+				<div class="ui-block-b"><h2>Some Text</h2></div>
+			</div>
+			<hr/>
+			<h3>課程完成度</h3>
+				<ul data-role="listview" data-inset="true" data-shadow="false">
+						<div data-role="collapsible"  data-collapsed-icon="plus" data-expanded-icon="minus" data-inset="false" class="ui-collapsible">
+							<h2 class="ui-collapsible-heading">
+								<span class="ui-btn-text">須具備課程<h3 style="color:blue" id="requireCourseP"></h3><span class="ui-collapsible-heading-status"> click to collapse contents</span></span>
+							</h2>
+							<ul data-role="listview" data-inset="true" data-shadow="false" id="requireCourse">								
+
+							</ul>
+						</div>
+							
+						<div data-role="collapsible"  data-collapsed-icon="plus" data-expanded-icon="minus" data-inset="false" class="ui-collapsible">
+							<h2 class="ui-collapsible-heading">
+								<span class="ui-btn-text">已修課程<h3 style="color:blue" id="completeCourseP"></h3><span class="ui-collapsible-heading-status"> click to collapse contents</span></span>
+							</h2>
+							<ul data-role="listview" data-inset="true" data-shadow="false" id="completeCourse">								
+
+							</ul>
+						</div>
+						<div data-role="collapsible"  data-collapsed-icon="plus" data-expanded-icon="minus" data-inset="false" class="ui-collapsible">
+							<h2 class="ui-collapsible-heading">
+									<span class="ui-btn-text">待修課程<h3 style="color:blue" id="pendCourseP"></h3><span class="ui-collapsible-heading-status"> click to collapse contents</span></span>
+							</h2>
+							<ul data-role="listview" data-inset="true" data-shadow="false" id="pendCourse">								
+
+							</ul>
+						</div>
+					</ul>
+				<hr/>
+				<h3>同儕排行</h3>
+					<div data-role="collapsible-set">
+						<div data-role="collapsible">
+						<h1>同儕01</h1>
+					
+						<div data-role="collapsible">
+							<h1>所修課程</h1>
+							<p>01</p>
+						</div>
+						<div data-role="collapsible">			
+							<h1>課堂成績</h1>
+							<p>02</p>
+						</div>										
+						<div data-role="collapsible">			
+							<h1>證照</h1>
+							<p>03</p>
+						</div>		
+						</div>
+
+						<div data-role="collapsible">
+						<h1>同儕02</h1>
+					
+						<div data-role="collapsible">
+							<h1>所修課程</h1>
+							<p>01</p>
+						</div>
+						<div data-role="collapsible">			
+							<h1>課堂成績</h1>
+							<p>02</p>
+						</div>										
+						<div data-role="collapsible">			
+							<h1>證照</h1>
+							<p>03</p>
+						</div>		
+						</div>
+				
+				<hr/>
+				<h3>證照</h3>
+					<p>TQC+ java</p>
+					<p>TOEIC</p>				
+		  </div>
+
+		  <div data-role="footer" data-theme="b">
+		  <h1></h1>
+		  </div>
+		</div> 
+	</body>
+</html>

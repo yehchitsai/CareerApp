@@ -50,13 +50,27 @@ $(document).ready(function(){
 						"id":"tdd_"+i
 					}).appendTo("#tr_"+i);
 					
+
 					
 					$("<tr/>", {
 						"class": "work",
 						"text": track_data[i]['j_complete']
 					}).appendTo("#tda_"+i);
 						
-
+						$("<button/>", {
+						"id":"btn."+i,
+						"class": "work",
+						"text": "刪除",
+						"onclick":"reply_click(" + track_data[i]['t_id'] + ")"
+						}).appendTo("#tdd_"+i);
+						
+						$("<li/>", {
+						"class":"ui-btn",
+						"html": "<a href='#' class='ui-btn ui-btn-icon-right ui-icon-carat-r'>" + b[i]['jt_name'] + "<br/>"+
+						"<a href='#' class='ui-btn ui-btn-icon-right ui-icon-carat-r'>123<a/>"
+						+"</a>"
+						}).appendTo("#jt");						
+					
 						$("<tr/>", {
 							"class": "work",
 							"text": track_data[i]['j_date']
@@ -76,21 +90,6 @@ $(document).ready(function(){
 							"text": track_data[i]['j_address']
 						}).appendTo("#tdb_"+i);
 						
-						
-						$("<a/>", {
-							"class": "work",
-							"href": "#",	//https://163.15.192.185/career/index.php/my_track/jobCompetition/format/html?s_id=" + localStorage.getItem("name") + "&j_name=" + track_data[i]['j_name']
-							"text":"查看",
-							"onclick":"saveJob('" + track_data[i]['j_name'] + "')"
-						}).appendTo("#tdc_"+i);
-						
-						
-						$("<button/>", {
-							"id":"btn."+i,
-							"class": "work_btn",
-							"text": "刪除",
-							"onclick":"reply_click(" + track_data[i]['t_id'] + ")"
-						}).appendTo("#tdd_"+i);
 //						console.log(track_data[i]['t_id']);
 				}
 			}

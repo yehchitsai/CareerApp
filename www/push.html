@@ -29,24 +29,32 @@
 		<div data-role="page" data-theme="c">
 		  <div data-role="header" data-theme="b" align="center">
 			<P>大專生即時就業媒合系統<P>
-			<div data-role="navbar">
-				<ul>
-				<li><a href="welcome.html" data-icon="arrow-l" data-rel="back">上一頁</a></li>
-				<li><a href="welcome.html" data-icon="home">首頁</a></li>
-				</ul>
+			<div data-role="navbar">				
+				    <a class="ui-btn ui-btn-icon-left ui-btn-left ui-icon-carat-l">回上頁</a>
+					<a class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-home" href="index.html">首頁</a>
 			</div>
 		  </div>
 
 		  <div data-role="content" data-theme="c">
-			<H3 align="center">推播訊息</H3>
+			<H3 align="center">訊息接收</H3>
 			<div data-role="collapsible-set">
 				<div data-role="collapsible">
-					<h3>工作通知</h3>
-					<ul data-role="listview"  id='job'></ul>
-				</div>
-				<div data-role="collapsible">
 					<h3>修課建議</h3>
-					<ul data-role="listview"  id='course'></ul>
+					<ul data-role="listview"  id='course'>
+					<table>
+						<td>
+							<tr>
+								<p>2015.07.29 11.01</p>
+							</tr>
+							<tr>
+								<p>寄件者</p>
+							</tr>
+							<tr>
+								<p>內容</p>
+							</tr>
+						</td>
+					</table>
+					</ul>
 				</div>
 				<div data-role="collapsible">
 					<h3>其他</h3>
