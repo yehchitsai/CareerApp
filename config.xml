@@ -24,10 +24,5 @@
 		</feature>
 		<icon src="res/ios/iphone.png" />
 	</platform>
-    
-    
-    
-    
-    
-    <access origin="*" />
+<access origin="*" />
 </widget>
