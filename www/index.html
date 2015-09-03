@@ -13,37 +13,78 @@
 		<script type="text/javascript" src="./js/career.js"></script>
 	</head>
 	<body>
-		<div data-role="page" data-theme="c" data-fullscreen="true">
+		<div data-role="page" data-theme="c" data-fullscreen="true" id="login_1">
 			<div data-role="header" data-theme="b" align="center" data-position="fixed">
 				<P>大專生即時就業媒合系統<P>		
 			</div>
-
-			<div data-role="content">
-				<div id="status"></div>
-				<div id="id">
-					<label for="id">帳號：</label>
-					<input type="text" name="username" id="username" value="a0128307" placeholder="請輸入你的學號" data-theme="d">
-				</div> 
-
-				<div id="password">
-					<label for="password">密碼：</label>
-					<input type="password" name="password" id="psw" value="qqoo" placeholder="請輸入你的密碼">
-				</div> 						
-				<div data-role="fieldcontain">
-					<label for="switch" >保持登入狀態：</label>
-					<select name="re_account" id="re_account" data-role="flipswitch" data-mini="false" data-track-theme="c">
-						<option value="off">Off</option>
-						<option value="on">On</option>
-					</select>
-				  </div>
-				<div id ="login1" align="right" >
-					<button  data-theme="b" id="login">登入</button>
-				</div>
+			<div data-role="content"> 
 			</div>
-
 			<div data-role="footer" data-theme="b" data-position="fixed">
-				<h1></h1>
+				<BR/>
 			</div>
 		</div> 
+
+		<div data-role="page" data-theme="c"  id="menu_2">
+		  <div data-role="header" data-theme="b" align="center">
+			<P>有夢最美<P>
+			<div data-role="navbar">
+					<a class="ui-btn ui-btn-right ui-btn-icon-right ui-icon-back" href="#login_1">登出</a>
+			</div>
+		  </div>
+		  <div data-role="content" data-theme="c">
+		  </div>
+		  <div data-role="footer" data-theme="b">
+		  <h1></h1>
+		  </div>
+		</div> 
+		
+		<div data-role="page" data-theme="c" id="p2_1_job">
+		  <div data-role="header" data-theme="b" align="center">
+			<P>有夢最美<P>
+			<div data-role="navbar">
+				    <a class="ui-btn ui-btn-icon-left ui-btn-left ui-icon-carat-l" href="#menu_2">回上頁</a>
+					<a class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-home" href="#login_1">首頁</a>
+			</div>
+		  </div>
+
+		  <div data-role="content" data-theme="c">
+		  </div>
+		  <div data-role="footer" data-theme="b">
+		  <h1></h1>
+		  </div>
+		</div> 
+
+		<div data-role="page" data-theme="c" id="p2_2_track">
+		  <div data-role="header" data-theme="b" align="center">
+			<P>有夢最美<P>
+			<div data-role="navbar">
+				    <a class="ui-btn ui-btn-icon-left ui-btn-left ui-icon-carat-l" href="#menu_2">回上頁</a>
+					<a class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-home" href="#login_1">首頁</a>
+			</div>
+		  </div>
+
+		  <div data-role="content" data-theme="c">
+		  </div>
+		  <div data-role="footer" data-theme="b">
+		  <h1></h1>
+		  </div>
+		</div> 
+
+		<div data-role="page" data-theme="c" id="p2_3_push">
+		  <div data-role="header" data-theme="b" align="center">
+			<P>有夢最美<P>
+			<div data-role="navbar">
+				    <a class="ui-btn ui-btn-icon-left ui-btn-left ui-icon-carat-l" href="#menu_2">回上頁</a>
+					<a class="ui-btn ui-btn-right ui-btn-icon-left ui-icon-home" href="#login_1">首頁</a>
+			</div>
+		  </div>
+
+		  <div data-role="content" data-theme="c">
+		  </div>
+		  <div data-role="footer" data-theme="b">
+		  <h1></h1>
+		  </div>
+		</div> 
+		
 	</body>
 </html>

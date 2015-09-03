@@ -22,133 +22,21 @@ function checkConnection() {
 //	alert('Connection type: ' + states[networkState]);
 	$('#status').append("network status: " + states[networkState]);
 }
-
 document.addEventListener("deviceready", onDeviceReady, false);
-
 $(document).bind( "mobileinit", function() {
     // Make your jQuery Mobile framework configuration changes here!
     $.mobile.allowCrossDomainPages = true;
 	$.support.cors = true;
 });
-
 function onDeviceReady() {
 	checkConnection();
 }
-
 var CILocation = "http://127.0.0.1/CareerCI/";
-
-
-
-$(document).bind( "pagebeforechange", function(e, data) {
-	// We only want to handle changePage() calls where the caller is
-	// asking us to load a page by URL.
-	if (typeof data.toPage === "string") {
-		// We only want to handle a subset of URLs.
-		var u = $.mobile.path.parseUrl(data.toPage);
-//		console.log("data.toPage = " + data.toPage);
-//		console.log(u);
-		var login = /^#login_1/;
-		var menu = /^#menu_2/;
-		var jobs = /^#p2_1_job/;
-		var track = "#p2_2_track";
-		var push = "#p2_3_push";
-		if (u.hash.search(login) !== -1) {
-			// Display a list of URLs.
-			showLogin(u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(menu) !== -1) {
-			// Display QR code for the selected URL.
-			showMenu(u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(jobs) !== -1) {
-			// Display QR code for the selected URL.
-			showJobs(u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(track) !== -1) {
-			// Display QR code for the selected URL.
-			showPage(track, u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(push) !== -1) {
-			// Display QR code for the selected URL.
-			showPage2(push, u, data.options);
-			e.preventDefault();
-		}
-
-	}
-});
-
-function showPage2(screen, urlObj, options) {
-	var $page = $(screen);
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/push", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-
-function showPage(screen, urlObj, options) {
-	var $page = $(screen);
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/track", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-
-function showJobs(urlObj, options) {
-	var $page = $("#p2_1_job");
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/jobs", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-function showMenu(urlObj, options) {
-	var $page = $("#menu_2");
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/menu", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-// Display a list of urls you want to share.
-function showLogin(urlObj, options) {
-	var $page = $("#login_1");
-	var $content = $page.children(":jqmData(role=content)");
-
-	$.get(CILocation+"career/login", function(data){
-		$content.html(data);
-//		$page.page();
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
 $(document).ready(function(){
+	    $.mobile.allowCrossDomainPages = true;
+	$.support.cors = true;
 //	alert(WEBURL);
 //	alert("after connect");
-	$.mobile.changePage("#login_1",{reloadPage:true});
-
 /*
 	if(localStorage.getItem('keepLogin')=='on'){
 		$.mobile.changePage("welcome.html");
@@ -175,9 +63,8 @@ $(document).ready(function(){
 				type: "get"
 			});
 */			
-//		$("#content").load(CILocation+"career/mainPage");		
-		console.log("Login click");
-		$.mobile.changePage("#menu_2");
+		$("#content").load(CILocation+"career/mainPage");		
+		$.mobile.changePage($("#mainPage"));
 //		console.log($(':mobile-pagecontainer').pagecontainer('getActivePage')[0].id);
 	/*	
 		if($("#username").val() == "" || $("#psw").val() == "" ){
