@@ -47,24 +47,26 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		var u = $.mobile.path.parseUrl(data.toPage);
 //		console.log("data.toPage = " + data.toPage);
 //		console.log(u);
-		var login = /^#login_1/;
-		var menu = /^#menu_2/;
-		var jobs = /^#p2_1_job/;
-		var track = "#p2_2_track";
-		var push = "#p2_3_push";
+		var login = "#login";// /^#login_1/;
+		var menu = 	"#menu";
+		var jobs = 	"#job";
+		var track = "#track";
+		var push = 	"#push";
+		console.log(login);
+
 		if (u.hash.search(login) !== -1) {
 			// Display a list of URLs.
-			showLogin(u, data.options);
+			showPage(login, u, data.options);
 			e.preventDefault();
 		}
 		else if (u.hash.search(menu) !== -1) {
 			// Display QR code for the selected URL.
-			showMenu(u, data.options);
+			showPage(menu, u, data.options);
 			e.preventDefault();
 		}
 		else if (u.hash.search(jobs) !== -1) {
 			// Display QR code for the selected URL.
-			showJobs(u, data.options);
+			showPage(jobs, u, data.options);
 			e.preventDefault();
 		}
 		else if (u.hash.search(track) !== -1) {
@@ -74,71 +76,21 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		}
 		else if (u.hash.search(push) !== -1) {
 			// Display QR code for the selected URL.
-			showPage2(push, u, data.options);
+			showPage(push, u, data.options);
 			e.preventDefault();
 		}
 
 	}
 });
 
-function showPage2(screen, urlObj, options) {
-	var $page = $(screen);
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/push", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-
 function showPage(screen, urlObj, options) {
 	var $page = $(screen);
+	var $url = CILocation + "career/" + screen.replace(/^#/, "");
 	var $content = $page.children(":jqmData(role=content)");
-
+	console.log($url);
 	// Inject the list markup into the content element.
-	$.get(CILocation+"career/track", function(data){
+	$.get($url, function(data){
 		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-
-function showJobs(urlObj, options) {
-	var $page = $("#p2_1_job");
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/jobs", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-function showMenu(urlObj, options) {
-	var $page = $("#menu_2");
-	var $content = $page.children(":jqmData(role=content)");
-
-	// Inject the list markup into the content element.
-	$.get(CILocation+"career/menu", function(data){
-		$content.html(data);
-		$page.enhanceWithin();
-		$.mobile.changePage($page, options);
-	});
-}
-
-// Display a list of urls you want to share.
-function showLogin(urlObj, options) {
-	var $page = $("#login_1");
-	var $content = $page.children(":jqmData(role=content)");
-
-	$.get(CILocation+"career/login", function(data){
-		$content.html(data);
-//		$page.page();
 		$page.enhanceWithin();
 		$.mobile.changePage($page, options);
 	});
@@ -147,7 +99,7 @@ function showLogin(urlObj, options) {
 $(document).ready(function(){
 //	alert(WEBURL);
 //	alert("after connect");
-	$.mobile.changePage("#login_1",{reloadPage:true});
+	$.mobile.changePage("#login");
 
 /*
 	if(localStorage.getItem('keepLogin')=='on'){
@@ -177,7 +129,7 @@ $(document).ready(function(){
 */			
 //		$("#content").load(CILocation+"career/mainPage");		
 		console.log("Login click");
-		$.mobile.changePage("#menu_2");
+		$.mobile.changePage("#menu");
 //		console.log($(':mobile-pagecontainer').pagecontainer('getActivePage')[0].id);
 	/*	
 		if($("#username").val() == "" || $("#psw").val() == "" ){
@@ -208,7 +160,10 @@ function onError(data, status)
 {
 	alert(data);
 } 
-
+function debug(msg)
+{
+	console.log(msg);
+}
 function onSuccess(data, status)
 {
 	localStorage.setItem('name',$("#username").val());
