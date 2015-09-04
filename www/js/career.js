@@ -50,9 +50,11 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		var login = "#login";// /^#login_1/;
 		var menu = 	"#menu";
 		var jobs = 	"#job";
+		var jobDetail =	"#detailJob";
+		var score = "#score";
 		var track = "#track";
 		var push = 	"#push";
-		console.log(login);
+		//console.log(login);
 
 		if (u.hash.search(login) !== -1) {
 			// Display a list of URLs.
@@ -67,6 +69,16 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		else if (u.hash.search(jobs) !== -1) {
 			// Display QR code for the selected URL.
 			showPage(jobs, u, data.options);
+			e.preventDefault();
+		}
+		else if (u.hash.search(jobDetail) !== -1) {
+			// Display QR code for the selected URL.
+			showPage(jobDetail, u, data.options);
+			e.preventDefault();
+		}
+		else if (u.hash.search(score) !== -1) {
+			// Display QR code for the selected URL.
+			showPage(score, u, data.options);
 			e.preventDefault();
 		}
 		else if (u.hash.search(track) !== -1) {
@@ -87,9 +99,10 @@ function showPage(screen, urlObj, options) {
 	var $page = $(screen);
 	var $url = CILocation + "career/" + screen.replace(/^#/, "");
 	var $content = $page.children(":jqmData(role=content)");
-	console.log($url);
+	console.log("url = " + $url);
 	// Inject the list markup into the content element.
 	$.get($url, function(data){
+//		debug($url + " : " + data);
 		$content.html(data);
 		$page.enhanceWithin();
 		$.mobile.changePage($page, options);
