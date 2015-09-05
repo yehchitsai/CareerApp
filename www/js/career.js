@@ -1,3 +1,4 @@
+//var CILocation = "http://163.15.192.201/CareerCI/";
 var CILocation = "http://127.0.0.1/CareerCI/";
 function debug(msg)
 {
@@ -36,6 +37,7 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		else if (u.hash.search(menu) !== -1) {
 			// Display QR code for the selected URL.
 			showPage(menu, u, data.options);
+			$("#stuName").text(localStorage.getItem("stu_name"));
 			e.preventDefault();
 		}
 		else if (u.hash.search(jobs) !== -1) {
@@ -84,9 +86,40 @@ function showPage(screen, urlObj, options) {
 $(document).ready(function(){
 	$.mobile.changePage("#login");
 	$(document).on("click" , "#loginBtn", function(e, data) {
-		$.mobile.changePage("#menu");			
+		if($("#username").val() == "" || $("#psw").val() == "" ){
+			alert( "請輸入完整資料!!");
+		} else {
+//			localStorage.setItem("s_id",$("#username").val());
+			$.ajax({
+				url: CILocation+"rest_auth/student/format/json",
+				type: "POST",	
+				cache: false,
+				crossDomain: true,
+				success: function(data, status){
+						debug(data);
+						//data = jQuery.parseJSON(data);
+						if(data.auth =='success'){
+							localStorage.setItem('stu_id',$("#username").val());
+							localStorage.setItem('stu_name',data.s_name);
+							localStorage.setItem('keepLogin',$('#keepLogin').val());
+							$.mobile.changePage("#menu");
+						} else {
+							alert("login fail");
+						}
+					} ,
+				error: function (data, status){
+						alert("connection error --- " + data);
+					} ,			
+				data: {
+					user_id:$("#username").val(),
+					password:$("#psw").val()
+				},
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				dataType: "json"
+			});	// end of ajax
+		} // end of else
 		return false;
-	});	
+	});	// end of on event
 });
 
 /*
