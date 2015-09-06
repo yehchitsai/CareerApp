@@ -3,54 +3,62 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="./css/bootstrap.css" />
-	<script type="text/javascript" src="./jsLib/jquery-2.1.4.min.js"></script>
+	<link rel=stylesheet type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="jsLib/jquery-2.1.4.min.js"></script>
 </head>
 <body>
-	<script>
+<script type="text/javascript">
 	function printbar(val){
 		var d="<div class='progress'>";
-		if (val>20) {
-			d+='<div class="progress-bar progress-bar-success" style="width: 20%">0%~20%</div>';
+		if (val<=20) {
+			d+='<div class="progress-bar progress-bar-success" style="width: '+val+'%"></div>';
+			d+='<div class="progress-bar progress-bar-empty" style="width: '+(100-val)+'%"><span style="color:black;">'+val+'分</span></div></div>';
+			//document.write(d);
+			return d;
 		}
-		else if (val>20&&val<40){
-			d+='<div class="progress-bar progress-bar-success" style="width: '+(val-20)+'%"></div>';
-			d+='<div class="progress-bar progress-bar-empty" style="width: '+(100-val)+'%"><span style="text-align:left;color=black;">'+val+'分<span></div></div>';
-			document.write(d);
-			return;
+		else if (val>20&&val<=40){
+			d+='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			d+='<div class="progress-bar progress-bar-info" style="width: '+(val-20)+'%"></div>';
+			d+='<div class="progress-bar progress-bar-empty" style="width: '+(80-val)+'%"><span style="color:black;">'+val+'分</span></div></div>';
+			//document.write(d);
+			return d;
 		}
-		if (val>40) {
-			d+='<div class="progress-bar progress-bar-info" style="width: 20%">20%~40%</div>';
+		else if (val>40&&val<=60){
+			d+='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			d+='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+			d+='<div class="progress-bar progress-bar-danger" style="width: '+(val-40)+'%"></div>';
+			d+='<div class="progress-bar progress-bar-empty" style="width: '+(60-val)+'%"><span style="color:black;">'+val+'分</span></div></div>';
+			//document.write(d);
+			return d;
 		}
-		else if (val>40&&val<60){
-			d+='<div class="progress-bar progress-bar-info" style="width: '+(val-40)+'%"></div>';
-			d+='<div class="progress-bar progress-bar-empty" style="width: '+(100-val)+'%"><span style="text-align:left;color=black;">'+val+'分<span></div></div>';
-			document.write(d);
-			return;
+		else if (val>60&&val<=80){
+			d+='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			d+='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+			d+='<div class="progress-bar progress-bar-danger" style="width:20%">40%~60%</div>';
+			d+='<div class="progress-bar progress-bar-warning" style="width: '+(val-60)+'%"></div>';
+			d+='<div class="progress-bar progress-bar-empty" style="width: '+(40-val)+'%"><span style="color:black;">'+val+'分</span></div></div>';
+			//document.write(d);
+			return d;
 		}
-		if (val>60) {
-			d+='<div class="progress-bar progress-bar-danger" style="width: 20%">40%~60%</div>';
-		}
-		else if (val>60&&val<80){
-			d+='<div class="progress-bar progress-bar-danger" style="width: '+(val-60)+'%"></div>';
-			d+='<div class="progress-bar progress-bar-empty" style="width: '+(100-val)+'%"><span style="text-align:left;color=black;">'+val+'分<span></div></div>';
-			document.write(d);
-			return;
-		}
-		if (val>80&&val<100) {
+		else if (val>80&&val<100) {
+			d+='<div class="progress-bar progress-bar-success" style="width:20%">0%~20%</div>';
+			d+='<div class="progress-bar progress-bar-info" style="width:20%">20%~40%</div>';
+			d+='<div class="progress-bar progress-bar-danger" style="width:20%">40%~60%</div>';
 			d+='<div class="progress-bar progress-bar-warning" style="width: 20%">60%~80%</div>';
 			d+='<div class="progress-bar progress-bar-shiny" style="width: '+(val-80)+'%"></div>';
-			d+='<div class="progress-bar progress-bar-empty" style="width: '+(100-val)+'%"><span style="text-align:left;color=black;">'+val+'分<span></div></div>';
-			document.write(d);
-			return;
+			d+='<div class="progress-bar progress-bar-empty" style="width: '+(20-val)+'%"><span style="color:black;">'+val+'分</span></div></div>';
+			//document.write(d);
+			return d;
 		}
 		else if(val==100){
 			d+='<div class="progress-bar progress-bar-shiny" style="width: 20%">100分!</div></div>';
-			document.write(d);
-			return;
+			//document.write(d);
+			return d;
 		}
 	}
-	printbar(88);
-</script>
+
+		printbar(30);
+
+	</script>
 </body>
 </html>
