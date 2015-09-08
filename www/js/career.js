@@ -37,7 +37,6 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		else if (u.hash.search(menu) !== -1) {
 			// Display QR code for the selected URL.
 			showPage(menu, u, data.options);
-			$("#stuName").text(localStorage.getItem("stu_name"));
 			e.preventDefault();
 		}
 		else if (u.hash.search(jobs) !== -1) {
@@ -66,12 +65,44 @@ $(document).bind( "pagebeforechange", function(e, data) {
 			e.preventDefault();
 		}
 
+
 	}
 });
 
 function showPage(screen, urlObj, options) {
 	var $page = $(screen);
-	var $url = CILocation + "career/" + screen.replace(/^#/, "");
+	var $url ="";
+	switch(screen){
+		case"#login":
+		$url = CILocation + "career/" + screen.replace(/^#/, "");
+		console.log($url);
+		break;
+		case"#menu":
+		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id");
+		console.log($url);
+		break;
+		case"#job":
+		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id");
+		console.log($url);
+		break;
+		case"#detailJob":
+		$url = CILocation + "career/" + screen.replace(/^#/, "");
+		console.log($url);
+		break;
+		case"#score":
+		var polymer=localStorage.getItem("stu_id")+"%"+localStorage.getItem("action_jt");
+		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+polymer;
+		console.log($url);
+		break;
+		case"#track":
+		$url = CILocation + "career/" + screen.replace(/^#/, "");
+		console.log($url);
+		break;
+		case"#push":
+		$url = CILocation + "career/" + screen.replace(/^#/, "");
+		console.log($url);
+		break;
+	}
 	var $content = $page.children(":jqmData(role=content)");
 	//console.log("url = " + $url);
 	// Inject the list markup into the content element.
@@ -100,7 +131,6 @@ $(document).ready(function(){
 						//data = jQuery.parseJSON(data);
 						if(data.auth =='success'){
 							localStorage.setItem('stu_id',$("#username").val());
-							localStorage.setItem('stu_name',data.s_name);
 							localStorage.setItem('keepLogin',$('#keepLogin').val());
 							$.mobile.changePage("#menu");
 						} else {
@@ -153,5 +183,8 @@ function checkConnection() {
 
 //	alert('Connection type: ' + states[networkState]);
 	$('#status').append("network status: " + states[networkState]);
+}
+function setjtaction(dom){
+	localStorage.setItem('action_jt',$(dom).next().attr('id'));
 }
 
