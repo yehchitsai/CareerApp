@@ -14,6 +14,7 @@ $(document).bind( "mobileinit", function() {
 $(document).bind( "pagebeforechange", function(e, data) {
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by URL.
+	console.log(e.toString());
 	if (typeof data.toPage === "string") {
 		// We only want to handle a subset of URLs.
 		var u = $.mobile.path.parseUrl(data.toPage);
@@ -50,6 +51,7 @@ $(document).bind( "pagebeforechange", function(e, data) {
 			e.preventDefault();
 		}
 		else if (u.hash.search(score) !== -1) {
+			localStorage.setItem('action_jt',$('.ui-btn-active').next().attr('id'));
 			// Display QR code for the selected URL.
 			showPage(score, u, data.options);
 			e.preventDefault();
@@ -90,7 +92,7 @@ function showPage(screen, urlObj, options) {
 		console.log($url);
 		break;
 		case"#score":
-		var polymer=localStorage.getItem("stu_id")+"%"+localStorage.getItem("action_jt");
+		var polymer=localStorage.getItem("stu_id")+"%7C"+localStorage.getItem("action_jt");
 		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+polymer;
 		console.log($url);
 		break;
@@ -184,7 +186,3 @@ function checkConnection() {
 //	alert('Connection type: ' + states[networkState]);
 	$('#status').append("network status: " + states[networkState]);
 }
-function setjtaction(dom){
-	localStorage.setItem('action_jt',$(dom).next().attr('id'));
-}
-
