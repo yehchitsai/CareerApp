@@ -188,8 +188,8 @@ function checkConnection() {
 //	alert('Connection type: ' + states[networkState]);
 	$('#status').append("network status: " + states[networkState]);
 }
-//取得github commit sha序號驗證
-/*function checkversion(){ 
+//向伺服器進行版本驗證
+function checkversion(){ 
 	var hash=btoa(version);
 	console.log(hash);
 	hash=encodeURIComponent(hash);
@@ -205,4 +205,4 @@ function checkConnection() {
 				console.log('version is up to date');
 			}
 	});
-}*/
+}
