@@ -1,4 +1,5 @@
 //var CILocation = "http://163.15.192.201/CareerCI/";
+var version='0.0.1';//版本編號
 var CILocation = "http://127.0.0.1/CareerCI/";
 function debug(msg)
 {
@@ -31,6 +32,7 @@ $(document).bind( "pagebeforechange", function(e, data) {
 
 		if (u.hash.search(login) !== -1) {
 			// Display a list of URLs.
+			checkversion();
 			showPage(login, u, data.options);
 			checkConnection();
 			e.preventDefault();
@@ -186,3 +188,21 @@ function checkConnection() {
 //	alert('Connection type: ' + states[networkState]);
 	$('#status').append("network status: " + states[networkState]);
 }
+//取得github commit sha序號驗證
+/*function checkversion(){ 
+	var hash=btoa(version);
+	console.log(hash);
+	hash=encodeURIComponent(hash);
+	console.log(hash);
+	$.getJSON(CILocation+'career/chkversion/'+hash,function(data){
+			if (!data){
+				alert('此APP版本不是最新的，請更新到最新版本');
+				window.open('https://play.google.com', '_system');
+				navigator.app.exitApp();
+			}
+			else
+			{
+				console.log('version is up to date');
+			}
+	});
+}*/
