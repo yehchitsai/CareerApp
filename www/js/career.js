@@ -99,7 +99,7 @@ function showPage(screen, urlObj, options) {
 		console.log($url);
 		break;
 		case"#track":
-		$url = CILocation + "career/" + screen.replace(/^#/, "");
+		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id");
 		console.log($url);
 		break;
 		case"#push":
@@ -194,7 +194,7 @@ function checkversion(){
 	console.log(hash);
 	hash=encodeURIComponent(hash);
 	console.log(hash);
-	$.getJSON(CILocation+'career/chkversion/'+hash,function(data){
+	$.get(CILocation+'career/chkversion/'+hash,function(data){
 			if (!data){
 				alert('此APP版本不是最新的，請更新到最新版本');
 				window.open('https://play.google.com', '_system');
@@ -203,6 +203,45 @@ function checkversion(){
 			else
 			{
 				console.log('version is up to date');
+			}
+	});
+}
+function settrack(){
+	var url = CILocation + "career/gettrack/"+localStorage.getItem("stu_id");
+	$.getJSON(url,function(data){
+			for (var i = 0; i < data.length; i++) {
+				$("#track"+data[i]["jt_id"]).addClass("istrack");
+				console.log(data[i]["jt_id"]+"istrack");
+			};
+	});
+	console.log('set track done!');
+}
+function addtrack(dom){
+	if (!$(dom).hasClass('istrack')) {
+		url=CILocation + "career/addtrack/"+localStorage.getItem("stu_id")+"/"+$(dom).attr('id').replace("track","");
+		$.get(url,function(data){
+			if(data){
+				alert('成功加入追蹤!');
+				$(dom).addClass("istrack");
+			}
+			else{
+				alert('失敗!');
+			}
+		});
+	}
+	else{
+		alert('這項已經追蹤囉!');
+	}
+}
+function deltrack(dom){
+	url=CILocation + "career/deltrack/"+localStorage.getItem("stu_id")+"/"+$(dom).attr('id').replace("deltrack","");
+	$.get(url,function(data){
+			if(data){
+				alert('成功取消追蹤!');
+				$(dom).parent().parent().parent().remove();
+			}
+			else{
+				alert('失敗!');
 			}
 	});
 }
