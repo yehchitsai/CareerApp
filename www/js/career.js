@@ -15,7 +15,7 @@ $(document).bind( "mobileinit", function() {
 $(document).bind( "pagebeforechange", function(e, data) {
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by URL.
-	console.log(e.toString());
+	console.log(String(e));
 	if (typeof data.toPage === "string") {
 		// We only want to handle a subset of URLs.
 		var u = $.mobile.path.parseUrl(data.toPage);
@@ -49,6 +49,7 @@ $(document).bind( "pagebeforechange", function(e, data) {
 		}
 		else if (u.hash.search(jobDetail) !== -1) {
 			// Display QR code for the selected URL.
+			localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
 			showPage(jobDetail, u, data.options);
 			e.preventDefault();
 		}
@@ -90,7 +91,7 @@ function showPage(screen, urlObj, options) {
 		console.log($url);
 		break;
 		case"#detailJob":
-		$url = CILocation + "career/" + screen.replace(/^#/, "");
+		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("action_jt");
 		console.log($url);
 		break;
 		case"#score":
@@ -243,5 +244,14 @@ function deltrack(dom){
 			else{
 				alert('失敗!');
 			}
+	});
+}
+function jobload(dom){
+	var page=$(dom).attr('rel');
+	var name=$('#job_name').attr('rel');
+	url=CILocation + "career/joblistappend/"+name+"/"+page;
+	$.get(url,function(data){
+			$('.keepload').remove();
+			$('.list-group').append(data);
 	});
 }
