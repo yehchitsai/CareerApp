@@ -27,26 +27,33 @@ $(document).bind( "pagebeforechange", function(e, data) {
 				showPage(id_tag, data.options);
 				e.preventDefault();
 				changelan("#lan_1");
+				break;
 			case"#menu":
 				showPage(id_tag, data.options);
 				e.preventDefault();
+				break;
 			case"#job":
 				showPage(id_tag, data.options);
 				e.preventDefault();
+				break;
 			case"#jobDetail":
 				localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
 				showPage(id_tag, data.options);
 				e.preventDefault();
+				break;
 			case"#score":
 				localStorage.setItem('action_jt',$('.ui-btn-active').next().attr('id'));
 				showPage(id_tag, data.options);
 				e.preventDefault();
+				break;
 			case"#track":
 				showPage(id_tag, data.options);
 				e.preventDefault();
+				break;
 			case"#push":
 				showPage(id_tag, data.options);
 				e.preventDefault();
+				break;
 		}
 
 	}
@@ -75,8 +82,7 @@ function showPage(screen, options) {
 		console.log($url);
 		break;
 		case"#score":
-		var polymer=localStorage.getItem("stu_id")+"%7C"+localStorage.getItem("action_jt");
-		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+polymer;
+		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id")+"/"+localStorage.getItem("action_jt");
 		console.log($url);
 		break;
 		case"#track":
