@@ -1,4 +1,4 @@
-//var CILocation = "http://163.15.192.201/CareerCI/";
+﻿//var CILocation = "http://163.15.192.201/CareerCI/";
 var version='0.0.1';//版本編號
 var CILocation = "http://127.0.0.1/CareerCI/";
 function debug(msg)
@@ -24,87 +24,101 @@ $(document).bind( "pagebeforechange", function(e, data) {
 			case"#login":
 				checkversion();
 				checkConnection();
-				showPage(id_tag, data.options);
+				showPage(id_tag, data.options,urlmaker(id_tag,""));
+				cleaner();
 				e.preventDefault();
 				changelan("#lan_1");
 				break;
 			case"#menu":
-				showPage(id_tag, data.options);
+				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
+				cleaner();
+				console.log(urlmaker(id_tag,localStorage.getItem("stu_id")));
 				e.preventDefault();
 				break;
 			case"#job":
-				showPage(id_tag, data.options);
+				cleaner();
+				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
 				e.preventDefault();
 				break;
-			case"#jobDetail":
+			/*case"#detailJob":
 				localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
-				showPage(id_tag, data.options);
+				cleaner();
+				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("action_jt")));
 				e.preventDefault();
 				break;
 			case"#score":
-				localStorage.setItem('action_jt',$('.ui-btn-active').next().attr('id'));
-				showPage(id_tag, data.options);
+				localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
+				cleaner();
+				showPage(id_tag, data.options,urlmaker(id_tag,[localStorage.getItem("stu_id"),localStorage.getItem("action_jt")]));
 				e.preventDefault();
-				break;
+				break;*/
 			case"#track":
-				showPage(id_tag, data.options);
+				cleaner();
+				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
 				e.preventDefault();
 				break;
 			case"#push":
-				showPage(id_tag, data.options);
+				cleaner();
+				showPage(id_tag, data.options,urlmaker(id_tag,""));
+				e.preventDefault();
+				break;
+		}
+		if (id_tag.search('@')==-1) {
+			console.log('bad page');
+			return;
+		}
+		var arra=id_tag.split("@");
+		switch(arra[1]){
+			case"todetailJob":
+				cleaner();
+				showPage(arra[0], data.options,urlmaker(arra[0],arra[2]));
+				e.preventDefault();
+				break;
+			case"toscore":
+				cleaner();
+				showPage(arra[0], data.options,urlmaker(arra[0],[localStorage.getItem("stu_id"),arra[2]]));
 				e.preventDefault();
 				break;
 		}
 
+
 	}
 });
-function urlmaker(target,value){
-	var lan=localStorage.getItem("language");
+function cleaner(dom){
+	$('.mustclean').children().remove();
 }
-function showPage(screen, options) {
-	var $page = $(screen);
-	var $url ="";
-	switch(screen){
-		case"#login":
-		$url = CILocation + "career/" + screen.replace(/^#/, "");
-		console.log($url);
-		break;
-		case"#menu":
-		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id");
-		console.log($url);
-		break;
-		case"#job":
-		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id");
-		console.log($url);
-		break;
-		case"#detailJob":
-		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("action_jt");
-		console.log($url);
-		break;
-		case"#score":
-		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id")+"/"+localStorage.getItem("action_jt");
-		console.log($url);
-		break;
-		case"#track":
-		$url = CILocation + "career/" + screen.replace(/^#/, "")+"/"+localStorage.getItem("stu_id");
-		console.log($url);
-		break;
-		case"#push":
-		$url = CILocation + "career/" + screen.replace(/^#/, "");
-		console.log($url);
+function urlmaker(target,arra){
+	var lan=localStorage.getItem("language");
+	var querystring="";
+	if (arra=="") {
+		debug(CILocation+"career/"+target.replace(/^#/, ""));
+		return CILocation+"career/"+target.replace(/^#/, "");
+	}
+	switch(typeof(arra)){
+		case"string":
+			querystring+="/"+arra;
+			break;
+		case"object":
+		for (var i = 0; i < arra.length; i++) {
+			querystring+="/"+arra[i];
+		};
 		break;
 	}
+	debug(CILocation+"career/"+target.replace(/^#/, "")+querystring)
+	return CILocation+"career/"+target.replace(/^#/, "")+querystring;
+}
+function showPage(screen, options, url) {
+	var $page = $(screen);
 	var $content = $page.children(":jqmData(role=content)");
 	//console.log("url = " + $url);
 	// Inject the list markup into the content element.
-	$.get($url, function(data){
+	$.get(url, function(data){
 		$content.html(data);
 //		$page.page();
 		$page.enhanceWithin();
 		$.mobile.changePage($page, options);
 	});
 }
-
 $(document).ready(function(){
 	$.mobile.changePage("#login");
 	$(document).on("click" , "#loginBtn", function(e, data) {
@@ -143,10 +157,7 @@ $(document).ready(function(){
 	});	// end of on event
 });
 
-/*
- *	 https://github.com/apache/cordova-plugin-network-information
- *	 檢查網路狀態
-*/
+
 function checkConnection() {
 	var networkState;
 	if(navigator.network)
@@ -175,7 +186,7 @@ function checkConnection() {
 //	alert('Connection type: ' + states[networkState]);
 	$('#status').append("network status: " + states[networkState]);
 }
-//向伺服器進行版本驗證
+
 function checkversion(){ 
 	var hash=btoa(version);
 	hash=encodeURIComponent(hash);
@@ -223,7 +234,7 @@ function deltrack(dom){
 	$.get(url,function(data){
 			if(data){
 				alert('成功取消追蹤!');
-				$(dom).parent().parent().parent().remove();
+				$(dom).parent().parent().remove();
 			}
 			else{
 				alert('失敗!');
