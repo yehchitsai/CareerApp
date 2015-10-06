@@ -1,6 +1,6 @@
 		localStorage.clear();
 		if(localStorage.getItem('deviceID')===null){
-			debug("onDeviceReady");
+			console.log("onDeviceReady");
 			
 			document.addEventListener('deviceready', onDeviceReady, true);
 		}

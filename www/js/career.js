@@ -5,7 +5,6 @@ function debug(msg)
 {
 	console.log(msg);
 }
-
 $(document).bind( "mobileinit", function() {
     // Make your jQuery Mobile framework configuration changes here!
     $.mobile.allowCrossDomainPages = true;
@@ -15,66 +14,47 @@ $(document).bind( "mobileinit", function() {
 $(document).bind( "pagebeforechange", function(e, data) {
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by URL.
-	console.log(String(e));
 	if (typeof data.toPage === "string") {
 		// We only want to handle a subset of URLs.
-		var u = $.mobile.path.parseUrl(data.toPage);
+		var id_tag = $.mobile.path.parseUrl(data.toPage).hash.toString();
 //		console.log("data.toPage = " + data.toPage);
 //		console.log(u);
-		var login = "#login";// /^#login_1/;
-		var menu = 	"#menu";
-		var jobs = 	"#job";
-		var jobDetail =	"#detailJob";
-		var score = "#score";
-		var track = "#track";
-		var push = 	"#push";
-		//console.log(login);
 
-		if (u.hash.search(login) !== -1) {
-			// Display a list of URLs.
-			checkversion();
-			showPage(login, u, data.options);
-			checkConnection();
-			e.preventDefault();
+		switch(id_tag){
+			case"#login":
+				checkversion();
+				checkConnection();
+				showPage(id_tag, data.options);
+				e.preventDefault();
+				changelan("#lan_1");
+			case"#menu":
+				showPage(id_tag, data.options);
+				e.preventDefault();
+			case"#job":
+				showPage(id_tag, data.options);
+				e.preventDefault();
+			case"#jobDetail":
+				localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
+				showPage(id_tag, data.options);
+				e.preventDefault();
+			case"#score":
+				localStorage.setItem('action_jt',$('.ui-btn-active').next().attr('id'));
+				showPage(id_tag, data.options);
+				e.preventDefault();
+			case"#track":
+				showPage(id_tag, data.options);
+				e.preventDefault();
+			case"#push":
+				showPage(id_tag, data.options);
+				e.preventDefault();
 		}
-		else if (u.hash.search(menu) !== -1) {
-			// Display QR code for the selected URL.
-			showPage(menu, u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(jobs) !== -1) {
-			// Display QR code for the selected URL.
-			showPage(jobs, u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(jobDetail) !== -1) {
-			// Display QR code for the selected URL.
-			localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
-			showPage(jobDetail, u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(score) !== -1) {
-			localStorage.setItem('action_jt',$('.ui-btn-active').next().attr('id'));
-			// Display QR code for the selected URL.
-			showPage(score, u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(track) !== -1) {
-			// Display QR code for the selected URL.
-			showPage(track, u, data.options);
-			e.preventDefault();
-		}
-		else if (u.hash.search(push) !== -1) {
-			// Display QR code for the selected URL.
-			showPage(push, u, data.options);
-			e.preventDefault();
-		}
-
 
 	}
 });
-
-function showPage(screen, urlObj, options) {
+function urlmaker(target,value){
+	var lan=localStorage.getItem("language");
+}
+function showPage(screen, options) {
 	var $page = $(screen);
 	var $url ="";
 	switch(screen){
@@ -192,9 +172,7 @@ function checkConnection() {
 //向伺服器進行版本驗證
 function checkversion(){ 
 	var hash=btoa(version);
-	console.log(hash);
 	hash=encodeURIComponent(hash);
-	console.log(hash);
 	$.get(CILocation+'career/chkversion/'+hash,function(data){
 			if (!data){
 				alert('此APP版本不是最新的，請更新到最新版本');
@@ -254,4 +232,27 @@ function jobload(dom){
 			$('.keepload').remove();
 			$('.list-group').append(data);
 	});
+}
+function changelan(dom){
+	var lan_temp=lan_config[$(dom).attr('rel')];
+	for(var key in lan_temp){ 
+		$(".lan_"+key).text(lan_temp[key]);
+	}
+	localStorage.setItem('language',$(dom).attr('rel'));
+}
+function loadlan(){	
+	if(localStorage.getItem("language")=="undefined"||localStorage.getItem("language")==""){
+		changelan("#lan_1");
+	}
+	else{
+		var lan=localStorage.getItem("language");
+		switch(lan){
+			case"zh_TW":
+				changelan("#lan_1");
+			break;
+			case"en_US":
+				changelan("#lan_2");
+			break;
+		}
+	}
 }

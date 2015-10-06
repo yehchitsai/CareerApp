@@ -4,23 +4,24 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   
-		<script type="text/javascript" src="./jsLib/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="./jsLib/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/jquery-mobile/dist/jquery.mobile.js"></script>
+		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-		<script src="js/gcm.js"></script>
-		<script type="text/javascript" src="./js/PushNotification.js"></script>
-		<script type="text/javascript" src="./js/career.js"></script>
-		<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.min.css">
+		<script type="text/javascript" src="js/gcm.js"></script>
+		<script type="text/javascript" src="js/PushNotification.js"></script>
+		<script type="text/javascript" src="js/career.js"></script>
+		<script type="text/javascript" src="js/language.js"></script>
+		<link rel="stylesheet" href="bower_components/jquery-mobile/css/themes/default/jquery.mobile.css">
 		<link rel="stylesheet" href="./css/theme.min.css" />
-		<link rel="stylesheet" href="./css/progressBar.css" />
-		<link rel="stylesheet" href="./css/bootstrap.css" />
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/main.css" />
 	</head>
 	<body>
 	<!-- page 1 -->
 		<div data-role="page" data-theme="c" data-fullscreen="true" id="login">
 			<div data-role="header" data-theme="a" align="center" data-position="fixed">
-				<P>有夢最美<P>		
+				<P class="lan_app_name">有夢最美<P>		
 			</div>
 
 			<div data-role="content">
@@ -34,7 +35,7 @@
 	<!-- page 2 -->
 		<div data-role="page" data-theme="c" data-fullscreen="true" id="menu">
 		  <div data-role="header" data-theme="a" align="center">
-			<P>有夢最美<P>
+			<P class="lan_app_name">有夢最美<P>
 			<a data-role="button" data-icon="back" class="ui-btn-right ui-btn-icon-right" href="#login">登出</a>
 		  </div>
 
@@ -50,9 +51,9 @@
 	<!-- page 2-1 -->
 		<div data-role="page" data-theme="c" id="job">
 			<div data-role="header" data-theme="a" align="center">
-				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left" data-rel="back" rel="external">回上頁</a>
-				<P>職業選擇<P>
-				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right" href="#menu" rel="external">首頁</a>
+				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left lan_btn_return" data-rel="back" rel="external">回上頁</a>
+				<P class="lan_pgt_job">職業選擇<P>
+				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right lan_btn_index" href="#menu" rel="external">首頁</a>
 			</div>
 		  <div data-role="content" data-theme="a">
 		  </div>
@@ -64,9 +65,9 @@
 	<!-- page 2-1-1 -->
 		<div data-role="page" data-theme="c" id="detailJob">
 			<div data-role="header" data-theme="a" align="center">
-				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left" data-rel="back" rel="external">回上頁</a>
-				<P>軟體程式設計師<P>
-				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right" href="#menu" rel="external">首頁</a>
+				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left  lan_btn_return" data-rel="back" rel="external">回上頁</a>
+				<P id="lan_detailjob"><P>
+				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right  lan_btn_index" href="#menu" rel="external">首頁</a>
 		  </div>
 
 		  <div data-role="content" data-theme="a">
@@ -79,9 +80,9 @@
 	<!-- page 2-1-2 -->
 		<div data-role="page" data-theme="c" id="score">
 			<div data-role="header" data-theme="a" align="center">
-				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left" data-rel="back" rel="external">回上頁</a>
-				<h1>有夢最美</h1>
-				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right" href="#menu" rel="external">首頁</a>
+				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left  lan_btn_return" data-rel="back" rel="external">回上頁</a>
+				<P id="lan_score"><P>
+				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right  lan_btn_index" href="#menu" rel="external">首頁</a>
 			</div>
 
 		  <div data-role="content" data-theme="a">
@@ -94,9 +95,9 @@
 	<!-- page 2-2 -->
 		<div data-role="page" data-theme="c" id="track">
 			<div data-role="header" data-theme="a" align="center">
-				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left" data-rel="back">回上頁</a>
-				<P>夢想追蹤<P>
-				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right" href="#menu">首頁</a>
+				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left  lan_btn_return" data-rel="back">回上頁</a>
+				<P class="lan_pgt_track">夢想追蹤<P>
+				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right  lan_btn_index" href="#menu">首頁</a>
 			</div>
 			<div data-role="content" data-theme="c">
 			</div>
@@ -108,9 +109,9 @@
 	<!-- page 2-3 -->
 		<div data-role="page" data-theme="c" id="push">
 			<div data-role="header" data-theme="a" align="center">
-				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left" data-rel="back" rel="external">回上頁</a>
-				<P>訊息接收<P>
-				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right" href="#menu" rel="external">首頁</a>
+				<a data-role="button" data-icon="carat-l" class="ui-btn-left ui-btn-icon-left  lan_btn_return" data-rel="back" rel="external">回上頁</a>
+				<P class="lan_pgt_push">訊息接收<P>
+				<a data-role="button" data-icon="home" class="ui-btn-right ui-btn-icon-right  lan_btn_index" href="#menu" rel="external">首頁</a>
 			</div>
 
 			<div data-role="content" data-theme="a">

@@ -1,0 +1,14 @@
+{
+  "name": "CareerApp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/yehchitsai/CareerApp",
+  "authors": [
+    "james <jackdog040506@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT"
+}
