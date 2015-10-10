@@ -24,15 +24,13 @@ $(document).bind( "pagebeforechange", function(e, data) {
 			case"#login":
 				checkversion();
 				checkConnection();
-				showPage(id_tag, data.options,urlmaker(id_tag,""));
 				cleaner();
+				showPage(id_tag, data.options,urlmaker(id_tag,""));
 				e.preventDefault();
-				changelan("#lan_1");
 				break;
 			case"#menu":
-				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
 				cleaner();
-				console.log(urlmaker(id_tag,localStorage.getItem("stu_id")));
+				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
 				e.preventDefault();
 				break;
 			case"#job":
@@ -40,18 +38,6 @@ $(document).bind( "pagebeforechange", function(e, data) {
 				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
 				e.preventDefault();
 				break;
-			/*case"#detailJob":
-				localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
-				cleaner();
-				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("action_jt")));
-				e.preventDefault();
-				break;
-			case"#score":
-				localStorage.setItem('action_jt',$('.ui-btn-active').attr('rel'));
-				cleaner();
-				showPage(id_tag, data.options,urlmaker(id_tag,[localStorage.getItem("stu_id"),localStorage.getItem("action_jt")]));
-				e.preventDefault();
-				break;*/
 			case"#track":
 				cleaner();
 				showPage(id_tag, data.options,urlmaker(id_tag,localStorage.getItem("stu_id")));
@@ -91,7 +77,7 @@ function urlmaker(target,arra){
 	var lan=localStorage.getItem("language");
 	var querystring="";
 	if (arra=="") {
-		debug(CILocation+"career/"+target.replace(/^#/, ""));
+		debug("action:"+CILocation+"career/"+target.replace(/^#/, ""));
 		return CILocation+"career/"+target.replace(/^#/, "");
 	}
 	switch(typeof(arra)){
@@ -104,8 +90,8 @@ function urlmaker(target,arra){
 		};
 		break;
 	}
-	debug(CILocation+"career/"+target.replace(/^#/, "")+querystring)
-	return CILocation+"career/"+target.replace(/^#/, "")+querystring;
+	debug("action:"+CILocation+"career/"+target.replace(/^#/, "")+"/"+lan+querystring);
+	return CILocation+"career/"+target.replace(/^#/, "")+"/"+lan+querystring;
 }
 function showPage(screen, options, url) {
 	var $page = $(screen);
@@ -242,9 +228,9 @@ function deltrack(dom){
 	});
 }
 function jobload(dom){
+	var name=$('#mainlist').attr('rel');
 	var page=$(dom).attr('rel');
-	var name=$('#job_name').attr('rel');
-	url=CILocation + "career/joblistappend/"+name+"/"+page;
+	url=urlmaker("#joblistappend",[name,page]);
 	$.get(url,function(data){
 			$('.keepload').remove();
 			$('.list-group').append(data);

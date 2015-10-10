@@ -1,6 +1,18 @@
+body{
+	font-family:Microsoft JhengHei;
+}
 .istrack{
 	background-color: yellow;
 }
 .jobtitle{
 	color: #32CD32;
+}
+.ui-header{
+	height: 45px;
+}
+.djt{
+	color: #32CD32;
+}
+.djst{
+	color: #8B0000;
 }

@@ -17,7 +17,7 @@ var lan_config={
 		"login_passwd"	: "Password：",
 		"login_status"	: "Keep signed in：",
 		"login_btn"		: "Sing in",
-		"app_name"		: "職業夢想家",
+		"app_name"		: "Occupation Dreamer",
 		"btn_logout"	: "Log out",
 		"btn_return"	: "Back",
 		"btn_index"		: "Menu",
